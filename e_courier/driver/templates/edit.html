@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% extends 'layout.html' %}
+{% load bootstrap3 %}
+{% block body %}
+
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div class="small_div">
+	<div class="container">
+		<br>
+	<h2>Edit for delivery request send:</h2>
+	<hr>
+	<form action ="/update/{{driver_list.id}}">
+			<label class="form-group" for="status">status : </label>
+		<select  class="form-control" type="text"name="status">
+			<option value="{{driver_list.status}}" selected>{{driver_list.status}}</option>
+			<option value="Not Available">Not Available</option>
+	    <option value="Active">Active</option>
+	    <option value="Onrequest">Onrequest</option>
+  </select>
+		<br>
+
+			<label class="form-group" for="name">name : </label>
+			<input class="form-control" type="text" name="name" value="{{driver_list.user}}" placeholder="{{driver_list.user}}">
+		<br>
+		<br>
+
+			<label class="form-group" for="car_details">car_details : </label>
+			<input class="form-control" type="text" name="car_details" value="{{driver_list.car_details}}" placeholder="{{driver_list.car_details}}">
+
+		<br>
+		<br>
+		<label class="form-group" for="phone">phone : </label>
+		<input class="form-control" type="text" name="phone" value="{{driver_list.phone}}" placeholder="{{driver_list.phone}}">
+
+		<br>
+		<input class="btn btn-success" type="submit" value="update">
+
+	</form>
+
+</div>
+</div>
+</body>
+</html>
+{% endblock %}

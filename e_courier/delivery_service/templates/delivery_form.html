@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% block content %}
+
+<div class="container">
+<h1>Service</h1>
+	<h1>{{note}}</h1>
+<form action="{% url 'delivery_service:delivery_request' %}"method="post"enctype="multipart/form-data">
+	{% csrf_token %}
+      <li>
+        <a href="{% url 'logout' %}"class="btn btn-simple">welcome:{{user.username}}</a>
+      </li>
+     {% bootstrap_form deliveryform %}
+   <input type="submit"class="btn btn-default" value="Send Request">
+</form>
+</div>
+{% endblock %}

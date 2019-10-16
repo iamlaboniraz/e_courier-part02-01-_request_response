@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% load widget_tweaks %}
+
+{% block body %}
+
+<div class="container">
+<div class="row">
+
+  <div class="column">
+    <div class="card">
+      <!-- <img src="/w3images/team1.jpg" alt="Jane" style="width:100%"> -->
+      <div class="container">
+        <form action="" method="post">
+          {% csrf_token %}
+        <h2>Name : {{user.username}}</h2>
+        <p class="title">From Location: {{obj.from_location}}</p>
+        <p class="title">To Location: {{obj.to_location}}</p>
+        <p>Product Type is : {{obj.product_type}}</p>
+        <input type="hidden" name="object" value="{{ obj.id }}">
+        <input type="hidden" name="user" value="{{ user.id }}">
+        <a href=""><button type="submit" name="send" class="button">Send</button></a>
+        <a href="#"><button type="submit" name="reject" class="button">Reject</button></a>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  </div>
+</div>
+{% endblock %}

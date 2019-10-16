@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block content %}
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>driver list who accept the delivery request</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<style type="text/css">
+    body {
+        color: #000000;
+        background: #000000;
+		font-family: 'Open Sans', sans-serif;
+	}
+	.table-wrapper {
+		width: 1200px;
+		margin: 50px auto;
+        background: #fff;
+        padding: 20px;
+        box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    }
+    .table-title {
+        padding-bottom: 10px;
+        margin: 0 0 10px;
+    }
+    .table-title h2 {
+        margin: 6px 0 0;
+        font-size: 22px;
+    }
+
+
+
+
+	table.table .form-control.error {
+		border-color: #f50000;
+	}
+	table.table td .add {
+		display: none;
+	}
+
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-8"><h2>Delivery <b>Details</b></h2></div>
+                </div>
+            </div>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>From Location </th>
+                        <th>To Location </th>
+                        <th>Payment System</th>
+                        <th>Product Type</th>
+                        <th>Date</th>
+                        <th>Driver Name</th>
+                        <th>Driver PhoneNumber</th>
+                        <th>Car details</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+   {% for orders in order %}
+   {% if orders.client.user == request.user %}
+        <tr class="gradeX">
+         <td>{{orders.order.from_location}}</td>
+         <td>{{ orders.order.to_location }}</td>
+         <td>{{ orders.order.payment_option }}</td>
+         <td>{{ orders.order.product_type }}</td>
+         <td>{{ orders.order.Date }}</td>
+         <td>{{ orders.driver.user }}</td>
+         <td>{{ orders.driver.phone }}</td>
+         <td>{{ orders.driver.car_details }}</td>
+
+</tr>
+   {% endif %}
+{% endfor %}
+
+
+
+</tr>
+</tbody>
+  </table>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}
+
+
+
+
+
+
+

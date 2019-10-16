@@ -1,0 +1,8 @@
+body {
+  margin: 0;
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+  overflow-y: scroll; /* Add vertical scrollbar */
+  /* background-color: #000080; */
+   background-color: black;
+  color:white;
+}

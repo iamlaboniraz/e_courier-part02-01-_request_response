@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+	<title>blog</title>
+	<!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Medium style Editor -->
+ <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+	<!-- Custom css -->
+	<link rel="stylesheet" href="{% static 'simplesocial/css/master.css' %}">
+	<!-- Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Ranga&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+
+  <!-- Navbar -->
+<nav class="navbar mynav" role="navigation"id="navbar">
+ <div class="container">
+   <a class="navbar-brand mynav" href="{% url 'home' %}">Star Social</a>
+
+   <ul class="nav navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+     <li><a href="{% url 'delivery_service:delivery_request' %}" class="btn btn-simple">Delivery Service</a></li>
+     <li><a href="{% url 'accounts:customer_service' %}"class="btn btn-simple">Customer Service</a></li>
+		 <li><a href="{% url 'profile' %}"class="btn btn-simple">Profile</a></li>
+     <li><a href="{% url 'driver:driver_profile_page' %}"class="btn btn-simple">Driver Profile</a></li>
+     <li><a href="{% url 'accounts:logout' %}"class="btn btn-simple">Log Out</a></li>
+     <li>
+       <a class="btn btn-simple">welcome:{{user.username}}</a>
+     </li>
+     {% else %}
+     <li><a href="{% url 'accounts:customer_service' %}"class="btn btn-simple">Customer Service</a></li>
+     <li><a href="{% url 'accounts:help' %}"class="btn btn-simple">Help</a></li>
+     <li><a href="{% url 'accounts:login' %}"class="btn btn-simple"><span class="glyphicon glyphicon-user"></span></a></li>
+     <li><a href="{% url 'driver:driver_login' %}"class="btn btn-simple"><span class="glyphicon glyphicon-user"></span></a></li>
+     <li><a href="{% url 'accounts:signup' %}"class="btn btn-simple">Sign Up</a></li>
+     <li><a href="{% url 'driver:DriverSignUp' %}"class="btn btn-simple">Driver Sign Up</a></li>
+     {% endif %}
+   </ul>
+ </div>
+
+</nav>
+
+<div class="container">
+  {% block content %}
+
+  {% endblock %}
+
+</div>
+<canvas id="canvas"></canvas>
+
+</body>
+  <script src="{% static 'simplesocial/js/master.js'%}" type="text/javascript" ></script>
+</html>

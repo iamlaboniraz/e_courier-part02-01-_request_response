@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% extends 'layout.html' %}
+{% load bootstrap3 %}
+{% block body %}
+
+<html>
+<head>
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #DCDCDC;
+}
+</style>
+</head>
+<body>
+
+  <h1>Driver List Here :</h1>
+
+<table>
+  <tr>
+    <th>Status</th>
+    <th>Name</th>
+    <th>Car details</th>
+    <th>Phone</th>
+    <th>Edit</th>
+  </tr>
+{% for driver_list in driver_list %}
+  <tr>
+    <td>{{ driver_list.status }}</td>
+    <td>{{ driver_list.name }}</td>
+    <td>{{ driver_list.car_details }}</td>
+    <td>{{ driver_list.phone }}</td>
+    <td><a class="btn btn-info"href="{% url 'driver:edit' id=driver_list.pk %}">Edit</a></td>
+  </tr>
+  {% endfor %}
+</table>
+<a class="btn btn-primary"href="#">Add Driver</a>
+
+</body>
+</html>
+{% endblock %}

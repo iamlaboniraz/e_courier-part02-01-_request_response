@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% extends 'layout.html' %}
+{% load bootstrap3 %}
+{% block body %}
+
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div class="small_div">
+	<div class="container">
+		<br>
+	<h2>Edit for delivery request send:</h2>
+	<hr>
+	<form action="#"method="post"enctype="multipart/form-data">
+		{% csrf_token %}
+			<label class="form-group" for="status">status : </label>
+		
+		<select  class="form-control" type="text"name="status">
+			<option value="Active" selected>Active</option>
+			<option value="Not Available">Not Available</option>
+	    <option value="Onrequest">Onrequest</option>
+        </select>
+		<br>
+
+			<label class="form-group" for="name">name : </label>
+			<input class="form-control" type="text" name="name">
+		<br>
+		<br>
+
+			<label class="form-group" for="car_details">car_details : </label>
+			<input class="form-control" type="text" name="car_details">
+
+		<br>
+		<br>
+		<label class="form-group" for="phone">phone : </label>
+		<input class="form-control" type="text" name="phone">
+
+		<br>
+		<input class="btn btn-success" type="submit" value="Create">
+
+	</form>
+
+</div>
+</div>
+</body>
+</html>
+{% endblock %}
+
+
