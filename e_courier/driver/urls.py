@@ -18,4 +18,9 @@ urlpatterns = [
       path('driver_see_the_request/', views.driver_see_the_request.as_view(template_name='tasks.html'), name='driver_see_the_request'),
 
       # path('DeliveryUpdate/<int:id>/',views.DeliveryUpdate.as_view(),name="DeliveryUpdate" ),
+      path('driver_see_delivery_details/',views.driver_see_delivery_details,name="driver_see_delivery_details" ),
+      # path('ForShareLocation/',views.ForShareLocation,name="ForShareLocation"),
+      path('livelocationshare/<int:id>/',views.livelocationshare,name="livelocationshare"),
+      path('locationUpdate/<int:order_id>/',views.locationUpdate,name="locationUpdate"),
+      path('ViewMapLocation/<int:id>/',views.ViewMapLocation,name="ViewMapLocation"),
 ]

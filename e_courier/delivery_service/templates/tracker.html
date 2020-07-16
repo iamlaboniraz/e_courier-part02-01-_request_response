@@ -1,0 +1,243 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load static %}
+{% block content %}
+<script src='https://api.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css' rel='stylesheet' />
+
+<style>
+    body{
+        color: black;
+        background: black;
+
+	}
+
+</style>
+
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+
+    <!-- Title Page-->
+    <title>Sign Up</title>
+
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+    <!-- Main CSS-->
+    <link href="{% static 'css/main.css'%}" rel="stylesheet" media="all">
+</head>
+
+
+
+  <div class="container">
+    <div class="col my-4">
+        <h2>Enter your Delivery Id and Phone Number to track your delivery</h2>
+        <form method="post" action="#" id="trackerForm">{% csrf_token %}
+
+
+
+
+
+            <div class="page-wrapper bg-dark p-t-100 p-b-50">
+        <div class="wrapper wrapper--w900">
+            <div class="card card-6">
+                <div class="card-heading">
+                    <h2 class="title">Track Your Delivery</h2>
+                </div>
+                <div class="card-body">
+
+
+
+
+                    <form method="POST" action="{% url 'accounts:signup' %}"novalidate>
+                        {% csrf_token %}
+                        <div class="form-row">
+
+                            <div class="name">Order Id</div>
+                            <div class="value">
+                                <input class="input--style-6" type="text" name="orderId" placeholder="Order Id">
+                            </div>
+                        </div>
+
+
+
+
+<!--                           <div class="form-row">-->
+<!--                               <div class="name">Phone Number</div>-->
+<!--                            <div class="value">-->
+<!--                                <input class="input&#45;&#45;style-6" type="text" name="phone" placeholder="Phone">-->
+<!--                            </div>-->
+<!--                        </div>-->
+
+
+
+
+
+
+                         <div class="card-footer">
+
+                     <input class="btn btn--radius-2 btn--blue-2" type="submit" value="Track your Delivery Location" >
+
+                </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+        </form>
+    <div class="col my-4">
+        <h2>Your Delivery Status</h2>
+        <div class="my-4">
+            <ul class="list-group" id="items">
+            	Enter your Delivery Id and click Track Order to find details about your order!
+            </ul>
+        </div>
+    </div>
+    </div>
+    </div>
+
+<div id='map' style='width: 100%; height: 400px;'></div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+   <script>
+$('#trackerForm').submit(function(event) {
+    $('#items').empty();
+    var formData = {
+        'orderId': $('input[name=orderId]').val(),
+        'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
+    };
+    $.ajax({
+            type: 'POST',
+            url: '{% url 'delivery_service:tracker' %}',
+            data: formData,
+            encode: true
+        })
+        .done(function(data) {
+            console.log(data)
+            updates = JSON.parse(data);
+            if (updates.length > 0 & updates != {}) {
+                for (i = 0; i < updates.length; i++) {
+                    let text = updates[i]['text'];
+                    let number = updates[i]['number'];
+                    let time = updates[i]['time'];
+
+                    mystr = `<li class="list-group-item disabled justify-content-between align-items-center">
+                    Longitude = ${number}  and Latitude =  ${text}
+                    <span class="badge badge-primary badge-pill">${time}</span>
+                </li>`
+                    $('#items').append(mystr);
+
+
+mapboxgl.accessToken = 'pk.eyJ1IjoibGFib25pIiwiYSI6ImNrMWk0Zmh3aTBhenczbnJwNDVkeWZ2dGwifQ.zsuot2lnIegDVPdKKeBM4Q';
+            var map = new mapboxgl.Map({
+            container: 'map',
+
+            style: "mapbox://styles/mapbox/satellite-streets-v11",
+            center: [text,number], // starting position [lng, lat]
+           zoom: 10, // starting zoom
+            });
+
+
+map.on("load", function () {
+/* Image: An image is loaded and added to the map. */
+map.loadImage("https://i.imgur.com/MK4NUzI.png", function(error, image) {
+if (error) throw error;
+map.addImage("custom-marker", image);
+/* Style layer: A style layer ties together the source and image and specifies how they are displayed on the map. */
+map.addLayer({
+id: "markers",
+type: "symbol",
+/* Source: A data source specifies the geographic coordinate where the image marker gets placed. */
+source: {
+type: "geojson",
+data: {
+type: 'FeatureCollection',
+features: [
+{
+type: 'Feature',
+properties: {},
+geometry: {
+type: "Point",
+coordinates: [text,number]
+}
+}
+]
+}
+},
+layout: {
+"icon-image": "custom-marker",
+}
+});
+});
+});
+
+
+                }
+            } else {
+            	mystr = `<li class="list-group-item disabled justify-content-between align-items-center">
+                    Sorry, We are not able to fetch this delivery id. Make sure to type correct delivery Id</li>`
+            	$('#items').append(mystr);
+            }
+        });
+    event.preventDefault();
+
+});
+
+
+
+
+
+
+
+</script>
+
+
+
+
+    <!-- Jquery JS-->
+    <script src="{% static 'vendor/jquery/jquery.min.js'%}"></script>
+
+
+    <!-- Main JS-->
+    <script src="{% static 'js/global.js'%}"></script>
+
+
+ <!--   start copyright text area-->
+    <div class="copyright-area">
+        <div class="container">
+            <div class="col-xs-12 col-sm-6 col-md-6 text-left">
+                <div class="footer-text">
+
+                </div>
+            </div>
+            <div class="col-xs-12  col-sm-6 col-md-6 text-right">
+                <div class="footer-text">
+                    <a href="#" class="fa fa-facebook"></a>
+                    <a href="#" class="fa fa-twitter"></a>
+                    <a href="#" class="fa fa-linkedin"></a>
+                    <a href="#" class="fa fa-google-plus"></a>
+                    <a href="#" class="fa fa-dribbble"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--    end of copyright text area-->
+{% endblock%}

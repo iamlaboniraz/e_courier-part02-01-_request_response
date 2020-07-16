@@ -1,10 +1,99 @@
 {% extends "base.html" %}
 {% load bootstrap3 %}
-
 {% block content %}
+<style>
+    body{
+        color: black;
+        background: black;
 
-  <div class="container">
-    <h1>This is our Customer Service Page</h1>
-      <a href="mailto:iamlaboniraz@gmail.com" class="btn btn-primary my-2">Cannect with me using Email</a>
-  </div>
+	}
+
+</style>
+
+
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3654.164353093506!2d90.4982203486101!3d23.67007979768572!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b6ccf783a8b9%3A0x45f82d651332dc5e!2sJalkuri%2C%20Narayanganj%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1576992669070!5m2!1sen!2sbd" width="100%" height="400px" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+
+
+
+                        <div class="row">
+    <div class="col-sm-10">
+     <h2 class="contact-title">Contact</h2>
+     </div>
+     <div class="col-lg-8">
+     <form class="form-contact contact_form" action="{% url 'accounts:customer_service' %}" method="post" id="contactForm" novalidate="novalidate">
+         {% csrf_token %}
+         <div class="row">
+     <div class="col-sm-6">
+     <div class="form-group">
+      <input class="form-control valid" name="factoryname" id="factoryname" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" placeholder="Enter your name *">
+        </div>
+      </div>
+
+    <div class="col-sm-6">
+       <div class="form-group">
+        <input class="form-control valid" name="email" id="email" type="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" placeholder="Email *">
+      </div>
+    </div>
+
+    <div class="col-sm-12">
+      <div class="form-group">
+          <textarea class="form-control w-100" name="Message" id="Message" cols="30" rows="9" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'" placeholder=" Message *"></textarea>
+       </div>
+    </div>
+
+    </div>
+
+            <button class="btn btn-success">SEND MESSAGE</button>
+<!--         <input type="submit" name="submit" value="SEND MESSAGE" class="more">-->
+
+     </form>
+     </div>
+
+                    <div class="col-lg-3 offset-lg-1">
+                        <div class="media contact-info">
+                            <span class="contact-info__icon"><i class="ti-home"></i></span>
+                            <div class="media-body">
+                              <a href="#" class="btn btn-primary my-2"><i class="glyphicon glyphicon-home"></i> Visit our head office  <h6>Jalkuri, Narayongonj</h6></a>
+
+                            </div>
+                        </div>
+                        <div class="media contact-info">
+                            <span class="contact-info__icon"></span>
+                            <div class="media-body">
+
+                              <a href="#" class="btn btn-primary my-2"><i class="glyphicon glyphicon-phone-alt"></i> +8801950933069  <h6>Sat to Fri 9am to 6pm</h6></a>
+
+                            </div>
+                        </div>
+                        <div class="media contact-info">
+                            <span class="contact-info__icon"><i class="ti-email"></i></span>
+                            <div class="media-body">
+                              <a href="mailto:iamlaboniraz@gmail.com" class="btn btn-primary my-2"><i class="glyphicon glyphicon-envelope"></i> Email</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+    <!--   start copyright text area-->
+    <div class="copyright-area">
+        <div class="container">
+            <div class="col-xs-12 col-sm-6 col-md-6 text-left">
+                <div class="footer-text">
+                   <p style="color:white">Don’t Hesitate to contact with us for any kind of information</p>
+                </div>
+            </div>
+            <div class="col-xs-12  col-sm-6 col-md-6 text-right">
+                <div class="footer-text">
+                    <a href="#" class="fa fa-facebook"></a>
+                    <a href="#" class="fa fa-twitter"></a>
+                    <a href="#" class="fa fa-linkedin"></a>
+                    <a href="#" class="fa fa-google-plus"></a>
+                    <a href="#" class="fa fa-dribbble"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--    end of copyright text area-->
+
 {% endblock %}

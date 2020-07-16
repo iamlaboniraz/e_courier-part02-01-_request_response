@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block content %}
+<html>
+<head>
+<style>
+body{
+        color: white;
+        background: black;
+
+	}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: black;
+}
+</style>
+</head>
+<body>
+
+<h2>Total Bill</h2>
+
+<table>
+  <tr>
+    <th>Client Name</th>
+    <th>All Bill</th>
+     <th>Total Bill</th>
+  </tr>
+
+  <tr>
+    <td>{{request.user}}</td>
+    <td>{% for order in total %}
+       {% if order.client.user == request.user %}
+         {% if order.order.order_status == '0' %}
+    <h6>{{order.industry.price}}</h6>
+       {% endif %}
+         {% endif %}
+    {% endfor %}</td>
+    <td>{{sum}}</td>
+
+  </tr>
+</table>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% load static %}
+{% block content %}
+<style>
+<!--.right {-->
+<!--  position: absolute;-->
+<!--  right: 60px;-->
+<!--  width: 400px;-->
+<!--  padding: 10px;-->
+<!--}-->
+body{
+        color: black;
+        background: black;
+
+	}
+
+
+</style>
+
+<div class="row">
+    <div class="col-sm-10">
+     <h2 class="contact-title" style="color:white;">About Us</h2>
+     </div>
+     <div class="col-lg-8">
+ <p style="color:white;">We decided to establish a web app for RMG industries.Our motive is learning about an very
+     effective and efficient technology of Courier service of different samples for ready made garments
+     factories in Bangladesh.We proposed this technique to add some value for ready made garments factory
+     where sample transaction occurs in a daily basis as RMG is the  biggest revenue earning industry in our
+     country.We choose to develop the delivery of samples because of sampling is the 1st key element to
+     get bulk order.Though sample delivery is must here, it follows a traditional and poor intra sample
+     delivery system between factories and buying offices.So our technique can bring some possible solutions
+     to overcome these problem.Buyers & sellers can track their samples anytime from anywhere which will reduce
+     mental stress & improve the transparency of products.There will be no needed of excessive people & costs for
+     factories to handle samples delivery.Factories can get total buyer wise samples sending data,costs &
+     what’s return for better decision making.Sample can be sent anytime,no need stick to one or two times
+     which will safe time.So saving time,reducing stresses and give transparency are prime concern of our system .
+     We decided to work with this according to demand of time in ready made garments factory in Bangladesh.
+     In our project,the whole system deals with giving the service to customers(i.e  merchandisers,buying
+     house officers) and response to a delivery request of registered drivers.We have more plans of some features
+     to implement further.We will try with our best effort to
+     make this technique as reliable as possible and also put sincerity to make sense of our system.</p>
+         <img class="right" src="{% static 'img/courier-checking-package-for-courier.jpg' %}"align="middle">
+
+
+
+
+     </div>
+
+                </div>
+
+{% endblock %}

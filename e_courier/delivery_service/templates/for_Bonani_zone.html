@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<html lang="en">
+<head>
+	<title>Table V04</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="{% static 'table/images/icons/favicon.ico'%}"/>
+<!--===============================================================================================-->
+<!--	<link rel="stylesheet" type="text/css" href="{% static 'table/vendor/bootstrap/css/bootstrap.min.css'%}">-->
+<!--===============================================================================================-->
+<!--	<link rel="stylesheet" type="text/css" href="{% static 'table/fonts/font-awesome-4.7.0/css/font-awesome.min.css'%}">-->
+<!--===============================================================================================-->
+<!--	<link rel="stylesheet" type="text/css" href="{% static 'table/vendor/animate/animate.css'%}">-->
+<!--===============================================================================================-->
+<!--	<link rel="stylesheet" type="text/css" href="{% static 'table/vendor/select2/select2.min.css'%}">-->
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'table/vendor/perfect-scrollbar/perfect-scrollbar.css'%}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'table/css/util.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'table/css/main.css'%}">
+<!--===============================================================================================-->
+</head>
+<style>
+    body{
+        color: black;
+        background: black;
+
+	}
+
+</style>
+<body>
+<br>
+<br>
+
+<hr>
+<h1 style="color:white">Delivery Request for Bonani Zone</h1>
+<hr>
+				<div class="table100 ver3 m-b-110">
+					<div class="table100-head">
+						<table>
+							<thead>
+								<tr class="row100 head">
+									<th class="cell100 column1">From industry</th>
+									<th class="cell100 column2">To industry</th>
+									<th class="cell100 column3">Phone</th>
+									<th class="cell100 column3">Product Type</th>
+									<th class="cell100 column3">Date</th>
+									<th class="cell100 column3">Action</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+{% for orders in order %}
+{% if orders.PresentAddress == 'Bonani' %}
+					<div class="table100-body js-pscroll">
+						<table>
+							<tbody>
+								<tr class="row100 body">
+									<td class="cell100 column1">{{ orders.from_location }}</td>
+									<td class="cell100 column2">{{ orders.to_location }}</td>
+									<td class="cell100 column3">{{ orders.phone }}</td>
+									<td class="cell100 column4">{{ orders.product_type }}</td>
+									<td class="cell100 column5">{{ orders.Date }}</td>
+									  <td class="cell100 column6">
+                     <a href="{% url 'delivery_service:click_for_send_driver_details' orders.id%}" class="btn btn-primary btnclick"><i class="glyphicon glyphicon-ok"></i></a>
+                                     </td>
+
+								</tr>
+
+
+							</tbody>
+						</table>
+					</div>
+					{% endif %}
+					{% endfor %}
+				</div>
+
+
+
+
+<!--===============================================================================================-->	
+	<script src="{% static 'table/vendor/jquery/jquery-3.2.1.min.js'%}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'table/vendor/bootstrap/js/popper.js'%}"></script>
+	<script src="{% static 'table/vendor/bootstrap/js/bootstrap.min.js'%}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'table/vendor/select2/select2.min.js'%}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'table/vendor/perfect-scrollbar/perfect-scrollbar.min.js'%}"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			var ps = new PerfectScrollbar(this);
+
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+			
+		
+	</script>
+<!--===============================================================================================-->
+	<script src="{% static 'table/js/main.js'%}"></script>
+
+</body>
+</html>
+{% endblock %}

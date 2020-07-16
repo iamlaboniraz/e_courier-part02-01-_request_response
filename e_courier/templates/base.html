@@ -1,63 +1,214 @@
 <!DOCTYPE html>
-{% load staticfiles %}
-<html>
+{% load static %}
+<html lang="en">
+
 <head>
-	<title>blog</title>
-	<!-- Bootstrap -->
-    <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fast Delivery</title>
+    <!--  bootstrap css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!--  font Awesome Css  -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <!--    stylesheet for fonts-->
+    <link href="{% static 'fonts/stylesheet.css'%}" rel="stylesheet">
+    <!-- Reset css-->
+    <link href="{% static 'css/reset.css'%}" rel="stylesheet">
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!--slick css-->
+    <link href="{% static 'css/slick.css'%}" rel="stylesheet">
+    <!--  owl-carousel css -->
+    <link href="{% static 'css/owl.carousel.css'%}" rel="stylesheet">
+    <!--  YTPlayer css For Background Video -->
+    <link href="{% static 'css/jquery.mb.YTPlayer.min.css'%}" rel="stylesheet">
+    <!--  style css  -->
+    <link rel="stylesheet" href="{% static 'css/meanmenu.css'%}">
+    <link href="{% static 'style.css'%}" rel="stylesheet">
+    <!--  Responsive Css  -->
+    <link href="{% static 'css/responsive.css'%}" rel="stylesheet">
 
-    <!-- Medium style Editor -->
- <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
-	<!-- Custom css -->
-	<link rel="stylesheet" href="{% static 'simplesocial/css/master.css' %}">
-	<!-- Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Ranga&display=swap" rel="stylesheet">
+    <!--  browser campatibel css files-->
+    <!--[if lt IE 9]>
+        <script src="{% static '//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js'%}"></script>
+        <script src="{% static '//oss.maxcdn.com/respond/1.4.2/respond.min.js'%}"></script>
+    <![endif]-->
 </head>
 
-<body>
+<body class="js">
+
+    <!--start header area-->
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2 col-lg-2 col-sm-2 col-xs-6">
+                        <div class="logo">
+  <a href="#"><img src="{% static 'img/Untitled-4.png'%}" alt="logo"></a>
+                        </div>
+                    </div>
 
 
-  <!-- Navbar -->
-<nav class="navbar mynav" role="navigation"id="navbar">
- <div class="container">
-   <a class="navbar-brand mynav" href="{% url 'home' %}">Star Social</a>
+                    <div class="col-md-6 col-xs-6 col-md-offset-1 col-sm-7 col-lg-offset-1 col-lg-6 mobMenuCol">
+                        <nav class="navbar">
+                            <!-- Collect the nav links, forms, and other content for toggling -->
+                                <ul class="nav navbar-nav navbar-right menu">
+                                    {% if user.is_authenticated %}
+                                    <li class="current-menu-item"><a href="">Sample Delivery<span class="caret"></span></a>
+                                       <ul class="dropdownMenu">
+                                           <li><a href="{% url 'home' %}">Home</a></li>
+                                           <li><a href="{% url 'AboutPage' %}">About Us</a></li>
+                                           <li><a href="{% url 'accounts:customer_service' %}">Contact</a></li>
+                                           <li><a href="{% url 'delivery_service:tracker'%}">Track your delivery</a></li>
 
-   <ul class="nav navbar-nav navbar-right">
-            {% if user.is_authenticated %}
-     <li><a href="{% url 'delivery_service:delivery_request' %}" class="btn btn-simple">Delivery Service</a></li>
-     <li><a href="{% url 'accounts:customer_service' %}"class="btn btn-simple">Customer Service</a></li>
-		 <li><a href="{% url 'profile' %}"class="btn btn-simple">Profile</a></li>
-     <li><a href="{% url 'driver:driver_profile_page' %}"class="btn btn-simple">Driver Profile</a></li>
-     <li><a href="{% url 'accounts:logout' %}"class="btn btn-simple">Log Out</a></li>
-     <li>
-       <a class="btn btn-simple">welcome:{{user.username}}</a>
-     </li>
-     {% else %}
-     <li><a href="{% url 'accounts:customer_service' %}"class="btn btn-simple">Customer Service</a></li>
-     <li><a href="{% url 'accounts:help' %}"class="btn btn-simple">Help</a></li>
-     <li><a href="{% url 'accounts:login' %}"class="btn btn-simple"><span class="glyphicon glyphicon-user"></span></a></li>
-     <li><a href="{% url 'driver:driver_login' %}"class="btn btn-simple"><span class="glyphicon glyphicon-user"></span></a></li>
-     <li><a href="{% url 'accounts:signup' %}"class="btn btn-simple">Sign Up</a></li>
-     <li><a href="{% url 'driver:DriverSignUp' %}"class="btn btn-simple">Driver Sign Up</a></li>
-     {% endif %}
-   </ul>
- </div>
+                                       </ul>
 
-</nav>
+                                    </li>
 
-<div class="container">
+                                    <li><a href="{% url 'delivery_service:delivery_request' %}">Delivery services</a></li>
+                                    <li><a href="{% url 'profile' %}">Profile</a></li>
+                                    <li><a href="{% url 'driver:driver_profile_page' %}">Driver Profile</a></li>
+
+
+
+
+                                </ul>
+                            <!-- /.navbar-collapse -->
+                        </nav>
+                    </div>
+
+                    <div class="col-md-3 col-sm-3 col-xs-4 col-lg-3 signup">
+                        <ul class="nav navbar-nav">
+                             <li><a href="{% url 'accounts:logout' %}">logOut</a></li>
+
+                            <li><a href="{% url 'accounts:signup' %}">sign up</a></li>
+<!--                            <li><a href="{% url 'driver:DriverSignUp' %}">sign up</a></li>-->
+                        </ul>
+
+
+
+
+
+                        {% else %}
+
+
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li><a href="{% url 'AboutPage' %}">About Us</a></li>
+                        <li><a href="{% url 'accounts:customer_service' %}">Contact</a></li>
+
+                                </ul>
+                            <!-- /.navbar-collapse -->
+                        </nav>
+                    </div>
+
+                    <div class="col-md-3 col-sm-3 col-xs-4 col-lg-3 signup">
+                        <ul class="nav navbar-nav">
+
+                            <li><a href="{% url 'accounts:login' %}">login</a></li>
+                            <li><a href="{% url 'accounts:signup' %}">sign up</a></li>
+<!--                             <li><a href="{% url 'driver:DriverSignUp' %}">sign up</a></li>-->
+                        </ul>
+
+                        {% endif%}
+                    </div>
+                </div>
+            </div>
+
+
+    <!--end of header area-->
+
+   <div class="container">
   {% block content %}
 
   {% endblock %}
 
 </div>
-<canvas id="canvas"></canvas>
 
+
+
+
+<!--     &lt;!&ndash;   end of slider area&ndash;&gt;-->
+<!--    <section class="footer-area" id="contact">-->
+<!--        <div class="container">-->
+<!--            <div class="row">-->
+<!--                <div class="col-md-4 col-sm-3 col-xs-12 col-lg-4">-->
+<!--                    <div class="single-footer">-->
+<!--                        <h2>about us</h2>-->
+<!--                        <p>ABOUT US Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-2 col-sm-3 col-xs-12 col-lg-2">-->
+<!--                    <div class="single-footer">-->
+<!--                        <h2>More links</h2>-->
+<!--                        <ul class="list">-->
+<!--                            <li><a href="#">about us.</a></li>-->
+<!--                            <li><a href="#">We Accepts.</a></li>-->
+<!--                            <li><a href="#">news latters</a></li>-->
+<!--                            <li><a href="#">Pricing & plans</a></li>-->
+<!--                            <li><a href="#">Calculate</a></li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-3 col-sm-3 col-xs-12 col-lg-3">-->
+<!--                    <div class="single-footer">-->
+<!--                        <h2>We Accepts</h2>-->
+<!--                        <a href="#"><img src="img/cards_credt_1.png" alt="#"></a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-3 col-sm-3 col-xs-12 col-lg-3">-->
+<!--                    <div class="single-footer clearfix">-->
+<!--                        <h2>news latters</h2>-->
+<!--                        <input type="text" class="form-control">-->
+<!--                        <input type="submit" class="submt-button" value="submit">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
+<!--    &lt;!&ndash;   start copyright text area&ndash;&gt;-->
+<!--    <div class="copyright-area">-->
+<!--        <div class="container">-->
+<!--            <div class="col-xs-12 col-sm-6 col-md-6 text-left">-->
+<!--                <div class="footer-text">-->
+
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-xs-12  col-sm-6 col-md-6 text-right">-->
+<!--                <div class="footer-text">-->
+<!--                    <a href="#" class="fa fa-facebook"></a>-->
+<!--                    <a href="#" class="fa fa-twitter"></a>-->
+<!--                    <a href="#" class="fa fa-linkedin"></a>-->
+<!--                    <a href="#" class="fa fa-google-plus"></a>-->
+<!--                    <a href="#" class="fa fa-dribbble"></a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    &lt;!&ndash;    end of copyright text area&ndash;&gt;-->
+
+    <!--  jquery.min.js  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <!--    bootstrap.min.js-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!--    jquery.sticky.js-->
+    <script src="{% static 'js/jquery.sticky.js'%}"></script>
+    <!--  owl.carousel.min.js  -->
+    <script src="{% static 'js/jquery.meanmenu.js'%}"></script>
+    <script src="{% static 'js/owl.carousel.min.js'%}"></script>
+    <!--  jquery.mb.YTPlayer.min.js   -->
+    <script src="{% static 'js/jquery.mb.YTPlayer.min.js'%}"></script>
+    <!--    slick.min.js-->
+    <script src="{% static 'js/slick.min.js'%}"></script>
+    <!--    jquery.nav.js-->
+    <script src="{% static 'js/jquery.nav.js'%}"></script>
+    <!--jquery waypoints js-->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+    <!--    jquery counterup js-->
+    <script src="{% static 'js/jquery.counterup.min.js'%}"></script>
+    <!--    main.js-->
+    <script src="{% static 'js/main.js'%}"></script>
 </body>
-  <script src="{% static 'simplesocial/js/master.js'%}" type="text/javascript" ></script>
+
 </html>
+
+
+

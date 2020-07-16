@@ -31,7 +31,7 @@
 												<img src="{% static 'img/django_logo.png' %}" class="invoice_logo" width="100%">
 											</div>-->
 											<div class="col-xs-8">
-												<h1 class="text-light" style="margin-top: 0px; color: #f70b0b">E-courier <strong class="text-accent-dark" style="color: #1ab394">Service</strong></h1>
+												<h1 class="text-light" style="margin-top: 0px; color: #f70b0b">Sample <strong class="text-accent-dark" style="color: #1ab394">Delivery</strong></h1>
 												<p> address<br>Dhaka</p>
 											</div>
 											<div class="col-xs-4 text-right">
@@ -42,19 +42,21 @@
 
 										<br/>
 
+
+
 										<!-- BEGIN INVOICE DESCRIPTION -->
 										<div class="row">
 											<div class="col-xs-8">
 												<h4 class="text-light">Delivery Details</h4>
 												<address>
-													<strong>From Location: {{ order.from_location }}</strong><br>
-													<strong>To Location: {{ order.to_location }}</strong><br>
-													<b>Product Type:</b> {{ order.product_type }}
+													<strong>From Location: {{ order.order.from_location }}</strong><br>
+													<strong>To Location: {{ order.order.to_location }}</strong><br>
+													<b>Product Type:</b> {{ order.order.product_type }}
 													<br>
-													<b>Phone Number: </b>{{ order.phone }}
+													<b>Phone Number: </b>{{ order.order.phone }}
 													
 													<br>
-													<b>Payment: </b>{{ order.payment_option }}
+													<b>Payment: </b>{{ order.industry.price }}
 													</strong>
 												</address>
 											</div><!--end .col -->
@@ -65,12 +67,12 @@
 														<div class="pull-right"> {{ order.id }} </div>
 													</div>
 													<div class="clearfix">
-														<div class="pull-left"> INVOICE DATE : </div>
-														<div class="pull-right"> $0.00 </div>
+														<div class="pull-left"> INVOICE TAKA : </div>
+														<div class="pull-right"> ${{ order.industry.price }} </div>
 													</div>
 													<div class="clearfix">
 														<div class="pull-left"> DELEVERY DATE : </div>
-														<div class="pull-right"> {{ order.Date }} </div>
+														<div class="pull-right"> {{ order.order.Date }} </div>
 													</div>
 												</div>
 											</div><!--end .col -->
@@ -104,7 +106,7 @@
 														</tr>
 														<tr>
 															<td class="text-right hidden-border"><strong>TAKA</strong></td>
-															<td class="text-right hidden-border">$0.00</td>
+															<td class="text-right hidden-border">${{ order.industry.price }}</td>
 														</tr>
 														
 													</tbody>

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block content %}
+
+<style>
+    body{
+        color: black;
+        background: black;
+
+	}
+
+</style>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bootstrap Table with Add and Delete Row Feature</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+
+button{
+    align-items:center;
+}
+    </style>
+    <body>
+<br>
+<br>
+<hr>
+<a href="{% url 'delivery_service:send' %}"><button type="button" class="btn btn-success btn-lg btn-block">For Naraungonj Zone</button></a><br><hr>
+<a href="{% url 'delivery_service:GazipurZone' %}"><button type="button" class="btn btn-light btn-lg btn-block">For Gazipur Zone</button></a><br><hr>
+<a href="{% url 'delivery_service:BonaniZone' %}"><button type="button" class="btn btn-warning btn-lg btn-block">For Bonani Zone</button></a><br><hr>
+
+</body>
+
+
+
+
+{% endblock %}
+
+
+
+

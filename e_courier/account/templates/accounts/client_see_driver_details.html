@@ -1,100 +1,206 @@
 {% extends "base.html" %}
 {% load bootstrap3 %}
+{% load crispy_forms_tags %}
+{% load static%}
 {% block content %}
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>driver list who accept the delivery request</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<style type="text/css">
-    body {
-        color: #000000;
-        background: #000000;
-		font-family: 'Open Sans', sans-serif;
-	}
-	.table-wrapper {
-		width: 1200px;
-		margin: 50px auto;
-        background: #fff;
-        padding: 20px;
-        box-shadow: 0 1px 1px rgba(0,0,0,.05);
-    }
-    .table-title {
-        padding-bottom: 10px;
-        margin: 0 0 10px;
-    }
-    .table-title h2 {
-        margin: 6px 0 0;
-        font-size: 22px;
-    }
+<style>
+    body{
+        color: white;
+        background: black;
 
-
-
-
-	table.table .form-control.error {
-		border-color: #f50000;
-	}
-	table.table td .add {
-		display: none;
 	}
 
 </style>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+
+    <!-- Title Page-->
+    <title>history</title>
+
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+    <!-- Main CSS-->
+    <link href="{% static 'css/main.css'%}" rel="stylesheet" media="all">
 </head>
+
 <body>
-    <div class="container">
-        <div class="table-wrapper">
-            <div class="table-title">
-                <div class="row">
-                    <div class="col-sm-8"><h2>Delivery <b>Details</b></h2></div>
+    <div class="page-wrapper bg-dark p-t-100 p-b-50">
+
+            <div class="card card-6">
+                <div class="card-heading">
+                    <h2 class="title">Driver list who accept the <b>delivery request</b></h2>
                 </div>
-            </div>
-            <table class="table table-bordered">
-                <thead>
+
+                <div class="card-body">
+
+
+                 <table id="datatable2" class="table order-column hover">
+                                      <thead>
                     <tr>
-                        <th>From Location </th>
-                        <th>To Location </th>
-                        <th>Payment System</th>
-                        <th>Product Type</th>
-                        <th>Date</th>
-                        <th>Driver Name</th>
-                        <th>Driver PhoneNumber</th>
-                        <th>Car details</th>
+                        <th><i class="fa fa-map-marker"></i>AWB</th>
+                        <th><i class="glyphicon glyphicon-road"></i> From </th>
+                        <th><i class="glyphicon glyphicon-road"></i> Destination </th>
+                        <th><i class="glyphicon glyphicon-eye-open"></i> Product Type</th>
+                        <th><i class="glyphicon glyphicon-time"></i> Date</th>
+                        <th><i class="glyphicon glyphicon-user"></i> Driver Name</th>
+                        <th><i  class="glyphicon glyphicon-phone-alt"></i> Driver PhoneNumber</th>
+                        <th><i  class="glyphicon glyphicon-bed"></i> Car details</th>
+                        <th><i  class="glyphicon glyphicon-usd"></i> Pay</th>
+                        <th><i  class="glyphicon glyphicon-star"></i> Please Enter Driver Rating</th>
                     </tr>
                 </thead>
-                <tbody>
+                                                <tbody>
+                                       {% for orders in order %}
 
-   {% for orders in order %}
    {% if orders.client.user == request.user %}
         <tr class="gradeX">
+            <td>{{orders.order.id}} and {{orders.order.phone}}</td>
          <td>{{orders.order.from_location}}</td>
          <td>{{ orders.order.to_location }}</td>
-         <td>{{ orders.order.payment_option }}</td>
          <td>{{ orders.order.product_type }}</td>
          <td>{{ orders.order.Date }}</td>
          <td>{{ orders.driver.user }}</td>
          <td>{{ orders.driver.phone }}</td>
          <td>{{ orders.driver.car_details }}</td>
+            <td>
+                <h5>{{ orders.industry.price }}</h5>
+<!--                <h5>{{ orders.order.Bill }}</h5>-->
+      {% if orders.order.order_status == '0' %}
+     <form action="{% url 'accounts:charge' orders.id %}"method="POST">
+		{% csrf_token %}
+<script src="https://checkout.stripe.com/checkout.js"class="stripe-button"
+		data-key = "{{key}}"
+		data-description = "please pay {{ orders.industry.price }}tk"
+		data-amount="{{orders.industry.price}}"
+		data-location="auto"
+        data-name="Courier payment"
+        data-description = "pay"
+        data-image="https://stripe.com/img/docummnetation/checkout/marketplace.png"
+		data-email="">
+</script>
+         {% endif %}
+           <script>
+    $(() => {
+      var handler = StripeCheckout.configure({
+        key: '{{ key }}',
+        locale: 'auto',
+        token: function(token) {
+          $('.notification-success-wrapper').css('display', 'none');
+          $('.notification-danger-wrapper').css('display', 'none');
+          $.ajax({
+            url: '/courses/charge/',
+            method: 'POST',
+            data: JSON.stringify({
+              token: token.id,
+              amount: "{{ course.price }}" * 100,
+              description: "{{ course.title }}",
+              course_id: "{{ course.id }}",
+            }),
+            headers: {'X-CSRFToken': generated_csrf_token},
+          })
+          .done((res) => {
+            const message = 'Thanks for purchasing!'
+            $('div > .notification.is-success').html(message);
+            $('.notification-success-wrapper').css('display', 'block');
+          })
+          .fail((err) => {
+            const message = 'There was a problem processing your payment. Please use a different payment method or contact your payment method provider.<br><br>Please contact us if you continue to have problems.'
+            $('div > .notification.is-danger').html(message);
+            $('.notification-danger-wrapper').css('display', 'block');
+          });
+        }
+      });
+      document.getElementById('purchase-btn').addEventListener('click', function(e) {
+        // Open Checkout with further options:
+        handler.open({
+          name: "Purchase a course",
+          description: "{{ user.email }}",
+          amount: "{{ course.price }}" * 100
+        });
+        e.preventDefault();
+      });
+      // Close Checkout on page navigation:
+      window.addEventListener('popstate', function() {
+        handler.close();
+      });
+    });
+  </script>
+</form>
+  </td>
+            <td>
 
+{{orders.rating}}
+                {% if orders.rating == '1' %}
+                <span class="fa fa-star checked"style="color:yellow"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+
+                {% elif orders.rating == '2' %}
+                <span class="fa fa-star checked"style="color:yellow"></span>
+                <span class="fa fa-star checked"style="color:yellow"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+
+                {% elif orders.rating == '3' %}
+                <span class="fa fa-star checked"style="color:yellow"></span>
+                <span class="fa fa-star checked"style="color:yellow"></span>
+                <span class="fa fa-star checked" style="color:yellow"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                {% elif orders.rating ==  '4' %}
+                <span class="fa fa-star checked"style="color:yellow"></span>
+                <span class="fa fa-star checked"style="color:yellow"></span>
+                <span class="fa fa-star checked"style="color:yellow"></span>
+                <span class="fa fa-star checked"style="color:yellow"></span>
+                <span class="fa fa-star"></span>
+                {% else %}
+                <span class="fa fa-star checked"style="color:yellow"></span>
+                <span class="fa fa-star checked"style="color:yellow"></span>
+                <span class="fa fa-star checked"style="color:yellow"></span>
+                <span class="fa fa-star checked"style="color:yellow"></span>
+                <span class="fa fa-star checked"style="color:yellow"></span>
+                {% endif %}
+<a href="{% url 'accounts:rating_enter' orders.id%}"><button >Update Rating</button></a>
+
+            </td>
 </tr>
    {% endif %}
 {% endfor %}
 
+                  </tbody>
 
+               </table>
 
-</tr>
-</tbody>
-  </table>
+                </div>
+            </div>
         </div>
-    </div>
-</body>
+
+
+
+    <!-- Jquery JS-->
+    <script src="{% static 'vendor/jquery/jquery.min.js'%}"></script>
+
+
+    <!-- Main JS-->
+    <script src="{% static 'js/global.js'%}"></script>
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
 </html>
+<!-- end document-->
+
+
+
+
 {% endblock %}
-
-
-
-
-
-
-

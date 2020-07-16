@@ -1,17 +1,166 @@
 {% extends 'base.html' %}
 {% load bootstrap3 %}
+{% load static %}
+{% load crispy_forms_tags %}
 {% block content %}
+<style>
+    body{
+        color: black;
+        background: black;
+
+	}
+
+</style>
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+
+    <!-- Title Page-->
+    <title>Delivery Service</title>
+
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+    <!-- Main CSS-->
+    <link href="{% static 'css/main.css'%}" rel="stylesheet" media="all">
+</head>
+
+
 
 <div class="container">
 <h1>Service</h1>
 	<h1>{{note}}</h1>
+    {% if id %}
+	<h1 style="color:white">Your AWB number is {{id}} and you can track your product using this {{id}} number</h1>
+    {% endif %}
 <form action="{% url 'delivery_service:delivery_request' %}"method="post"enctype="multipart/form-data">
+
+    <div class="page-wrapper bg-dark p-t-100 p-b-50">
+        <div class="wrapper wrapper--w900">
+            <div class="card card-6">
+                <div class="card-heading">
+                    <h2 class="title">Delivery Request Form</h2>
+                </div>
+
+                <div class="card-body">
+
 	{% csrf_token %}
-      <li>
-        <a href="{% url 'logout' %}"class="btn btn-simple">welcome:{{user.username}}</a>
-      </li>
-     {% bootstrap_form deliveryform %}
-   <input type="submit"class="btn btn-default" value="Send Request">
+
+
+                    <div class="form-row">
+                    <div class="name">From</div>
+                            <div class="value">
+                                <div class="input--style-6">
+                                  {{ deliveryform.from_location|as_crispy_field }}
+                               </div>
+<!--                                <input class="input&#45;&#45;style-6" type="option" name="deliveryform.from_location" placeholder="Password confirmation">-->
+                            </div>
+                        </div>
+
+                     <div class="form-row">
+                    <div class="name">Destination</div>
+                            <div class="value">
+                                <div class="input--style-6">
+                                  {{ deliveryform.to_location|as_crispy_field }}
+                               </div>
+<!--                                <input class="input&#45;&#45;style-6" type="option" name="deliveryform.from_location" placeholder="Password confirmation">-->
+                            </div>
+                        </div>
+
+
+
+                     <div class="form-row">
+                    <div class="name">Your Present Address</div>
+                            <div class="value">
+                                <div class="input--style-6">
+                                  {{ deliveryform.PresentAddress|as_crispy_field }}
+                               </div>
+<!--                                <input class="input&#45;&#45;style-6" type="option" name="deliveryform.from_location" placeholder="Password confirmation">-->
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-row">
+                    <div class="name">Product Type</div>
+                            <div class="value">
+                                <div class="input--style-6">
+                                  {{ deliveryform.product_type|as_crispy_field }}
+                               </div>
+<!--                                <input class="input&#45;&#45;style-6" type="option" name="deliveryform.from_location" placeholder="Password confirmation">-->
+                            </div>
+                        </div>
+
+
+                      <div class="form-row">
+                    <div class="name">Phone Number</div>
+                            <div class="value">
+                                <div class="input--style-6">
+                                  {{ deliveryform.phone|as_crispy_field }}
+                               </div>
+<!--                                <input class="input&#45;&#45;style-6" type="option" name="deliveryform.from_location" placeholder="Password confirmation">-->
+                            </div>
+                        </div>
+
+
+                    <div class="form-row">
+                    <div class="name">Prduct Weight</div>
+                            <div class="value">
+                                <div class="input--style-6">
+                                  {{ deliveryform.weight|as_crispy_field }}
+                               </div>
+<!--                                <input class="input&#45;&#45;style-6" type="option" name="deliveryform.from_location" placeholder="Password confirmation">-->
+                            </div>
+                        </div>
+
+
+                         <div class="card-footer">
+
+                     <input class="btn btn--radius-2 btn--blue-2" type="submit" value="Send Request" >
+
+                </div>
+   </div>
+            </div>
+        </div>
+    </div>
 </form>
 </div>
+
+
+
+    <!-- Jquery JS-->
+    <script src="{% static 'vendor/jquery/jquery.min.js'%}"></script>
+
+
+    <!-- Main JS-->
+    <script src="{% static 'js/global.js'%}"></script>
+
+
+
+
+    <!--   start copyright text area-->
+    <div class="copyright-area">
+        <div class="container">
+            <div class="col-xs-12 col-sm-6 col-md-6 text-left">
+                <div class="footer-text">
+
+                </div>
+            </div>
+            <div class="col-xs-12  col-sm-6 col-md-6 text-right">
+                <div class="footer-text">
+                    <a href="#" class="fa fa-facebook"></a>
+                    <a href="#" class="fa fa-twitter"></a>
+                    <a href="#" class="fa fa-linkedin"></a>
+                    <a href="#" class="fa fa-google-plus"></a>
+                    <a href="#" class="fa fa-dribbble"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--    end of copyright text area-->
 {% endblock %}

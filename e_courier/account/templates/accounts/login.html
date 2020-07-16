@@ -1,13 +1,24 @@
 {% extends "base.html" %}
 {% load bootstrap3 %}
-
+{% load static %}
 {% block content %}
+<style>
+    body{
+        color: black;
+        background: black;
+
+	}
+
+</style>
 <div class="container">
     <h1>Login</h1>
     <form method="POST">
         {% csrf_token %}
         {% bootstrap_form form %}
         <input type="submit" value="Login" class="btn btn-default">
+        <a href="{% url 'password_reset' %}">Forgot Your Password?</a>
     </form>
 </div>
+<br>
+
 {% endblock %}

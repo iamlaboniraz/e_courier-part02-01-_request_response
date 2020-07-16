@@ -1,78 +1,134 @@
-{% extends 'base.html' %}
-
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load crispy_forms_tags %}
+{% load static%}
 {% block content %}
-<section>
-<div class="section-body">
-       <!-- BEGIN DATATABLE 2 -->
-  <div class="row">
-      <div class="col-lg-12">
-            <div class="card">
-               <div class="card-head style-primary">
-                  <header>All Orders Data</header>
-                      <div class="tools">
-                          <a class="btn btn-icon-toggle btn-collapse"><i class="fa fa-angle-down"></i></a>
-                               <a class="btn btn-icon-toggle btn-close"><i class="md md-close"></i></a>
-                                    </div>
-                              </div>
-                              <div class="card-body">
-                                  <div class="table-responsive">
-                                   <table id="datatable2" class="table order-column hover">
+<style>
+    body{
+        color: white;
+        background: black;
+
+	}
+
+</style>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+
+    <!-- Title Page-->
+    <title>history</title>
+
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+    <!-- Main CSS-->
+    <link href="{% static 'css/main.css'%}" rel="stylesheet" media="all">
+</head>
+
+<body>
+    <div class="page-wrapper bg-dark p-t-100 p-b-50">
+        <div class="wrapper wrapper--w900">
+            <div class="card card-6">
+                <div class="card-heading">
+                    <h2 class="title">History</h2>
+                </div>
+
+                <div class="card-body">
+
+
+                 <table id="datatable2" class="table order-column hover">
                                        <thead>
                                           <tr>
                                              <th>ID</th>
                                              <th>User ID</th>
-                                              <th>from_location</th>
-                                               <th>to_location</th>
+                                              <th>From</th>
+                                               <th>Destination</th>
                                               <th>product_type</th>
                                                <th>Date</th>
-                                                 <th>payment_option</th>
+                                                 <th>Bill</th>
                                                  <th>Status</th>
+
                                                   </tr>
                                                 </thead>
                                                 <tbody>
                                      {% for order in orders %}
-                                           <tr class="gradeX">
-                                               <td>{{ order.id }}</td>
-                                                 <td>{{ user.id }}</td>
-                                                    <td>{{ order.from_location }}</td>
-                                                     <td>{{ order.to_location }}</td>
-                                                     <td>{{ order.product_type }}</td>
-                                                     <td>{{ order.Date }}</td>
-                                                     <td>{{ order.payment_option }}</td>   
-                                      {% if order.order_status == 'Confirm' %}
-                                           <td><span class="badge">{{ order.order_status }}</span></td>
-                                            {% elif order.order_status == 'Ready' %}
-                                           <td><span class="badge" style="background: #ff9800"> {{ order.order_status }}</span></td>
-                                             {% elif order.order_status == 'Send' %}
-                                           <td><span class="badge" style="background: #0c84e4"> {{ order.order_status }}</span></td>
-                                           {% elif order.order_status == 'Delivered' %}
-                                            <td><span class="badge" style="background: #0aa89e"> {{ order.order_status }}</span></td>
-                                            {% elif order.order_status == 'Returned' %}
-                                               <td><span class="badge" style="background: #f44336"> {{ order.order_status }}</span></td>
-                                            {% elif order.order_status == 'Cancelled' %}
-                                                <td><span class="badge" style="background: #313534"> {{ order.order_status }}</span></td>
-                                             {% endif %}
-                                  
-                       </tr>
-                         {% endfor %}
-                  
-                  </tbody>
-               
-               </table>
-        
-        </div><!--end .table-responsive -->
-     
-     </div>   
-   
-    </div>       
-   
-   </div><!--end .col -->
-   
-   </div><!--end .row -->
-     
-      <!-- END DATATABLE 2 -->
+                                     {% if order.client.user == request.user %}
+        <tr class="gradeX">
+            <td>{{ order.id }}</td>
+             <td>{{ user.id }}</td>
+         <td>{{order.order.from_location}}</td>
+         <td>{{ order.order.to_location }}</td>
+         <td>{{ order.order.product_type }}</td>
+         <td>{{ order.order.Date }}</td>
+<!--         <td>{{ order.order.Bill }}</td>-->
+         <td>{{ order.industry.price }}</td>
 
-</div><!--end .section-body -->
-   
-    </section>
+          {% if order.order.order_status == '0' %}
+                <td><span class="badge" style="background: #0aa89e"> {{ order.order.order_status }}</span></td>
+                {% else %}
+              <td><span class="badge" style="background: #ff9800"> {{ order.order.order_status }}</span></td>
+             {% endif %}
+            <td>
+               {% endif %}
+{% endfor %}
+
+                  </tbody>
+
+               </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Jquery JS-->
+    <script src="{% static 'vendor/jquery/jquery.min.js'%}"></script>
+
+
+    <!-- Main JS-->
+    <script src="{% static 'js/global.js'%}"></script>
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
+<!-- end document-->
+
+
+
+ <!--   end of slider area-->
+
+    <!--   start copyright text area-->
+    <div class="copyright-area">
+        <div class="container">
+            <div class="col-xs-12 col-sm-6 col-md-6 text-left">
+                <div class="footer-text">
+
+                </div>
+            </div>
+            <div class="col-xs-12  col-sm-6 col-md-6 text-right">
+                <div class="footer-text">
+                    <a href="#" class="fa fa-facebook"></a>
+                    <a href="#" class="fa fa-twitter"></a>
+                    <a href="#" class="fa fa-linkedin"></a>
+                    <a href="#" class="fa fa-google-plus"></a>
+                    <a href="#" class="fa fa-dribbble"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--    end of copyright text area-->
+
+
 {% endblock %}
+
+
+
+
+

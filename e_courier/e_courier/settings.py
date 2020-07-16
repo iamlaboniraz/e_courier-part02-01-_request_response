@@ -31,7 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    'material.admin',
+    'material.admin.default',
+    # 'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -46,6 +48,8 @@ INSTALLED_APPS = [
     'notification',
     'users',
     'driver',
+    'industry',
+    'factoryHead',
 ]
 
 MIDDLEWARE = [
@@ -77,19 +81,33 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'e_courier.wsgi.application'
-
-
+STRIPE_SECRET_KEY = 'sk_test_KkNCmUNUtcg9BwKipbIA75tI00rjXy65iH'
+STRIPE_PUBLISHABLE_KEY = 'pk_test_NaPCIKiiTcVsrTRjefQa3NMX00YFS4FKYS'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+GOOGLE_MAPS_API_KEY="AIzaSyBImIMKtSO0TdKinEZp-0PYypE1tTw-Rq0"
+# GOOGLE_MAPS_API_KEY = os.environ.get('GOOGLE_MAPS_API_KEY')
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'rmgdelivery',
+        'USER': 'postgres',
+        'PASSWORD': 'test1234',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -135,3 +153,14 @@ MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
 LOGIN_REDIRECT_URL='test'
 LOGOUT_REDIRECT_URL='thanks'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# AUTHENTICATION_BACKENDS = [
+#     'account.backends.EmailBackend', ]
+
+# AUTHENTICATION_BACKENDS = (
+#     # Needed to login by username in Django admin, regardless of `allauth`
+#     "account.backends.EmailBackend",
+# "django.contrib.auth.backends.ModelBackend",
+#
+# )

@@ -21,5 +21,6 @@ dependencies:
     - python-dateutil==2.7.3
     - six==1.11.0
     - text-unidecode==1.2
+    - django-material==0.5.1
 
 prefix: C:\Users\Asus\AppData\Roaming\SPB_Data\.conda\envs\DjangoBootcamp

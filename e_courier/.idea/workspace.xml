@@ -1,17 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c6a74143-6ead-490c-b0e5-5ebeb9f25b56" name="Default" comment="" />
+    <list default="true" id="c6a74143-6ead-490c-b0e5-5ebeb9f25b56" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/delivery_service/templates/add_track_update.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/delivery_service/templates/system_admin_track_update.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/delivery_service/templates/tracker.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/driver/templates/account/ForShareLocation.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/driver/templates/account/ViewMapLocation.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/driver/templates/account/sharelocation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/templates/accounts/driver_rating_create.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/templates/accounts/client_see_driver_details.html" beforeDir="false" afterPath="$PROJECT_DIR$/account/templates/accounts/client_see_driver_details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/templates/accounts/customer_service.html" beforeDir="false" afterPath="$PROJECT_DIR$/account/templates/accounts/customer_service.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/templates/accounts/delivery_details_show_for_user.html" beforeDir="false" afterPath="$PROJECT_DIR$/account/templates/accounts/delivery_details_show_for_user.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/templates/accounts/help.html" beforeDir="false" afterPath="$PROJECT_DIR$/account/templates/accounts/help.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/templates/accounts/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/account/templates/accounts/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/templates/accounts/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/account/templates/accounts/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/templates/accounts/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/account/templates/accounts/signup.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery_service/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_service/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery_service/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_service/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery_service/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_service/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery_service/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery_service/migrations/0002_delevaryinfo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery_service/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/templates/registration/password_reset_subject.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery_service/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_service/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery_service/templates/all_latest_delivery_order.html" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_service/templates/all_latest_delivery_order.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery_service/templates/click_for_send_driver_details.html" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_service/templates/click_for_send_driver_details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery_service/templates/delivery_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_service/templates/delivery_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery_service/templates/driver_see.html" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_service/templates/driver_see.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery_service/templates/edit_delivery.html" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_service/templates/edit_delivery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery_service/templates/index_delivery_details.html" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_service/templates/index_delivery_details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery_service/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_service/templates/layout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery_service/templates/show_delivery.html" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_service/templates/show_delivery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery_service/templates/wait.html" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_service/templates/wait.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery_service/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_service/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delivery_service/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_service/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/driver/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/driver/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/delivery_service/templates/ClientChart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/driver/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver/templates/account/driver_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/driver/templates/account/driver_profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver/templates/account/driver_signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/driver/templates/account/driver_signup.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver/templates/driver_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/driver/templates/driver_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver/templates/tasks.html" beforeDir="false" afterPath="$PROJECT_DIR$/driver/templates/tasks.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/driver/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/driver/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/driver/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/e_courier/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/e_courier/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/e_courier/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/e_courier/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/e_courier/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/e_courier/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/default.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/media/default.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/profile_pics/45850238_2182850288649146_8015453798145196032_n.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/profile_pics/corolla4dr-ce.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/profile_pics/corolla4dr-ce_3AxeZYY.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/profile_pics/corolla4dr-ce_43ejxwJ.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/profile_pics/corolla4dr-ce_DtINsdM.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/profile_pics/delivery-man-glyph-icon-e-commerce-vector-20266255.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/profile_pics/delivery-man-glyph-icon-e-commerce-vector-20266255_Me16pls.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/profile_pics/delivery-man-icon-set_gg90421980.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/profile_pics/delivery-man-line-icon-e-commerce-vector-20266248.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/profile_pics/first-step_31.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/vendor/jquery/jquery.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/vendor/jquery/jquery.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/vendor/jquery/jquery.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/vendor/jquery/jquery.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/about.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/test.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/test.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/thanks.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/thanks.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../environment.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../environment.yml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="e_courier" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1QxdqxhnTNXTuTd9D2m7llB6Yyn" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="ignore.virus.scanning.warn.message" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Asus\Desktop\New folder\rating_system_build\part02\e_courier_final_project\e_courier\account\templates\accounts" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -64,5 +156,28 @@
       <updated>1568716376344</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/factoryHead/views.py</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

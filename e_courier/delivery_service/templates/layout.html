@@ -143,7 +143,7 @@
 
 								<li><a href="{% url 'delivery_service:all_delivery'%}" ><span class="title">All Old Orders</span></a></li>
 
-								<li><a href="#" ><span class="title">Add Order</span></a></li>
+								<li><a href="{% url 'delivery_service:delivery_track_update'%}" ><span class="title">Delivery Track update</span></a></li>
 							</ul><!--end /submenu -->
 						</li><!--end /menu-li -->
 						<!-- END ORDER -->
@@ -164,6 +164,29 @@
 							</ul><!--end /submenu -->
 						</li><!--end /menu-li -->
 						<!-- END PRODUCT -->
+
+
+
+
+
+						<!-- BEGIN PRODUCT -->
+						<li class="gui-folder">
+							<a>
+								<div class="gui-icon"><i class="fa fa-cubes"></i></div>
+								<span class="title">Invoice </span>
+							</a>
+							<!--start submenu -->
+							<ul>
+                                <li><a href="{% url 'FactoryHead:FactoryList'%}"><span class="title">Factory List</span></a></li>
+							</ul><!--end /submenu -->
+
+						</li><!--end /menu-li -->
+						<!-- END PRODUCT -->
+
+
+
+
+
 
 						<!-- BEGIN PROFILE -->
 						<li class="gui-folder">
@@ -221,6 +244,6 @@
               $("#product_id").select2();
             });
         </script>
-
+		</div>
 	</body>
 </html>

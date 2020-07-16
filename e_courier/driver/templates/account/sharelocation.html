@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+	<meta http-equiv="refresh" content="10"/>
+
+<script src='https://api.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css' rel='stylesheet' />
+
+<style>
+    body{
+        color: white;
+        background: black;
+
+	}
+
+</style>
+
+
+
+<form action ="/locationUpdate/{{order.order_id}}" name="frm1">
+		{%  csrf_token %}
+		<br>
+
+
+			<label class="form-group">Latitude : </label>
+			<input type="hidden" id="getlon" onclick="getLocation()"class="form-control" type="text" name="latitude" value="{{order.latitude}}" placeholder="{{order.latitude}}">
+
+		<br>
+		<br>
+
+			<label class="form-group" >Longitude : </label>
+			<input type="hidden" id="getlat" onclick="getLocation()" class="form-control" type="text" name="longitude" value="{{order.longitude}}" placeholder="{{order.longitude}}">
+
+		<br>
+		<br>
+		<br>
+	</form>
+
+
+
+
+
+
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+    pageLoad();
+});
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, positionError);
+    }
+}
+
+function showPosition(position) {
+    console.log(position);
+
+    document.getElementById('getlon').value = position.coords.longitude;
+    document.getElementById('getlat').value = position.coords.latitude;
+
+    lon = document.getElementById('getlon').value;
+    lat = document.getElementById('getlat').value;
+
+
+    document.frm1.submit(); // here the form is submit
+}
+
+function positionError(error) {
+    if (error.PERMISSION_DENIED) alert('Please accept geolocation');
+    hideLoadingDiv();
+    showError('Geolocation is not enabled. Please enable to use this feature');
+}
+
+function pageLoad() {
+    getLocation();
+}
+
+getLocation();
+showPosition();
+</script>
+{% endblock %}

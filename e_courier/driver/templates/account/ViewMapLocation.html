@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<script src='https://api.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css' rel='stylesheet' />
+<style>
+    body{
+        color: white;
+        background: black;
+
+	}
+
+</style>
+
+
+
+
+
+
+<p style="color:white">{{ViewLocation.latitude}}</p>
+<p style="color:white">{{ViewLocation.longitude}}</p>
+<div id='map' style='width: 100%; height: 400px;'></div>
+
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoibGFib25pIiwiYSI6ImNrMWk0Zmh3aTBhenczbnJwNDVkeWZ2dGwifQ.zsuot2lnIegDVPdKKeBM4Q';
+var map = new mapboxgl.Map({
+container: 'map',
+style: 'mapbox://styles/mapbox/streets-v11',
+center: [{{ViewLocation.longitude}},{{ViewLocation.latitude}}], // starting position [lng, lat]
+zoom: 13, // starting zoom
+});
+
+
+
+
+
+map.on("load", function () {
+/* Image: An image is loaded and added to the map. */
+map.loadImage("https://i.imgur.com/MK4NUzI.png", function(error, image) {
+if (error) throw error;
+map.addImage("custom-marker", image);
+/* Style layer: A style layer ties together the source and image and specifies how they are displayed on the map. */
+map.addLayer({
+id: "markers",
+type: "symbol",
+/* Source: A data source specifies the geographic coordinate where the image marker gets placed. */
+source: {
+type: "geojson",
+data: {
+type: 'FeatureCollection',
+features: [
+{
+type: 'Feature',
+properties: {},
+geometry: {
+type: "Point",
+coordinates: [{{ViewLocation.longitude}},{{ViewLocation.latitude}}]
+}
+}
+]
+}
+},
+layout: {
+"icon-image": "custom-marker",
+}
+});
+});
+});
+function showPosition(position) {
+    console.log(position);
+    document.getElementById('getlat').value = position.coords.latitude;
+    document.getElementById('getlon').value = position.coords.longitude;
+    lat = document.getElementById('getlat').value;
+    lon = document.getElementById('getlon').value;
+
+
+
+    var result = [event.latLng.lat(), event.latLng.lng()];
+transition(result);
+}
+
+
+
+
+var position = [{{ViewLocation.longitude}},{{ViewLocation.latitude}}];
+var numDeltas = 100;
+var delay = 10; //milliseconds
+var i = 0;
+var deltaLat;
+var deltaLng;
+
+function transition(result){
+    i = 0;
+    deltaLat = (result[0] - position[0])/numDeltas;
+    deltaLng = (result[1] - position[1])/numDeltas;
+    moveMarker();
+}
+
+function moveMarker(){
+    position[0] += deltaLat;
+    position[1] += deltaLng;
+    var latlng = new google.maps.LatLng(position[0], position[1]);
+    marker.setTitle("Latitude:"+position[0]+" | Longitude:"+position[1]);
+    marker.setPosition(latlng);
+    if(i!=numDeltas){
+        i++;
+        setTimeout(moveMarker, delay);
+    }
+}
+
+function getLocation() {
+if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+
+    }
+
+}
+
+function showPosition(position) {
+  setTimeout(function(){
+     console.log("THIS IS");
+     window.location.href = window.location.href.split("?")[0] + "?lat=" + position.coords.latitude + "&long=" + position.coords.longitude;
+
+ }, 10000);
+}
+
+getLocation();
+
+</script>
+
+
+
+{% endblock %}

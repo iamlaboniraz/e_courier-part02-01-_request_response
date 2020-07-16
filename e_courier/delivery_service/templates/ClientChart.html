@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% block content %}
+<style>
+    body{
+        color: white;
+        background: black;
+
+	}
+
+</style>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Factory Chart</title>
+</head>
+<body>
+  <div id="container"></div>
+  <script src="https://code.highcharts.com/highcharts.src.js"></script>
+  <script>
+    Highcharts.chart('container', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Client Chart'
+        },
+        xAxis: {
+            categories: ['A.G. DRESSES LIMITED', 'A.M. DESIGN LTD', 'A.R. APPARELS LTD', 'A.T.S. APPARELS LTD', 'ABA SWEATER LTD']
+        },
+        series: [{
+            name: 'Year 2010',
+            data: [107, 31, 635, 203, 2]
+        }, {
+            name: 'Year 2018',
+            data: [133, 156, 947, 408, 6]
+        }, {
+            name: 'Year 2020',
+            data: [1052, 954, 4250, 740, 38]
+        }]
+    });
+  </script>
+</body>
+</html>
+{% endblock %}
